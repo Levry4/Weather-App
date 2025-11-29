@@ -1,6 +1,8 @@
 import os
 import requests
+from functools import lru_cache
 
+@lru_cache(maxsize=128)
 def get_weather(latitude, longitude):
     api_key = os.getenv("OPENWEATHER_API_KEY")
     if not api_key:
@@ -27,3 +29,4 @@ def get_weather(latitude, longitude):
     }
 
     return weather_info
+
